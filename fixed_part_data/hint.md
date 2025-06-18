@@ -1,0 +1,3 @@
+To add a part to a capsule place the cursor after its initial `{` and press `ctrl+space`. Select the command **New Part**. In the Art syntax the name of the part and the capsule that types the part is separated by a colon (`:`).
+
+You can add the keyword **fixed** to the beginning of each part declaration, but this is optional since capsule parts are fixed by default. In future exercises you will learn about other types of parts that are not fixed.

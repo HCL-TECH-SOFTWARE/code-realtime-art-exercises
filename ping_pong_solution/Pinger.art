@@ -1,0 +1,22 @@
+capsule Pinger {
+    [[rt::decl]]
+    `
+        unsigned int count = 0;
+    `
+    service behavior port thePort~ : Events;
+    statemachine {
+        state PingerState {
+            entry
+            `
+                if (++count <= 3)
+                    thePort.ping().send(); // Send event "ping" on port "thePort"
+
+            `;
+        };
+        PingerState -> PingerState on thePort.pong 
+        `
+            Log::out << "Pong received" << std::endl;
+        `;
+        initial -> PingerState;
+    };
+};

@@ -1,0 +1,8 @@
+{    
+    "order": 800,    
+    "expectedOutput": [
+        "I'm Bob",
+        "I'm Alice",
+        "I'm Steve"
+    ]
+}

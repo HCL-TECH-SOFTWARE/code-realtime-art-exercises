@@ -1,0 +1,5 @@
+//Transformation Configuration File
+let tc = TCF.define(TCF.ART_TO_CPP);
+tc.targetFolder = 'part_multiplicity_target'; 
+tc.cppCodeStandard = "C++ 17"; 
+tc.topCapsule = "Top";

@@ -1,0 +1,7 @@
+{    
+    "order": 1000,    
+    "expectedOutput": [
+        "S1 -> S2",
+        "S2 -> S3"
+    ]
+}

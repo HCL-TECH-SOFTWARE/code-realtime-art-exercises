@@ -1,0 +1,56 @@
+capsule Top {   
+    [[rt::decl]]
+    `
+        float lastData = 0;    
+        void logTooLow() {
+            Log::out << "Staying in " << getCurrentStateString() << " because received data is too low: " << *static_cast<float*>(getMsg()->getData()) << " is not higher than previous data " << lastData << std::endl;
+        }
+    `
+    service behavior port comPort : Events;
+
+    statemachine {        
+        state InitialState {
+            tooLow: on comPort.theEvent when `*rtdata < lastData`
+            `
+                logTooLow();
+            `;
+        };
+        state StateA {
+            tooLow: on comPort.theEvent when `*rtdata < lastData`
+            `
+                logTooLow();
+            `;
+        };
+        state StateB {
+            tooLow: on comPort.theEvent when `*rtdata < lastData`
+            `
+                logTooLow();
+            `;
+        };
+        state FinalState {
+            entry
+            `
+                Log::out << "Final state reached with data " << *static_cast<float*>(getMsg()->getData()) << std::endl;
+            `;
+        };        
+        initial -> InitialState
+        `
+            Log::out << "Initial transition" << std::endl;
+        `;        
+        t1: InitialState -> StateA on comPort.theEvent when `else`
+        `
+            lastData = *rtdata;
+            Log::out << "Transition t1 with data " << *rtdata << std::endl;
+        `;        
+        t2: StateA -> StateB on comPort.theEvent when `else`
+        `
+            lastData = *rtdata;
+            Log::out << "Transition t2 with data " << *rtdata << std::endl;
+        `; 
+        t3: StateB -> FinalState on comPort.theEvent when `else`
+        `
+            lastData = *rtdata;
+            Log::out << "Transition t3 with data " << *rtdata << std::endl;
+        `;
+    };
+};

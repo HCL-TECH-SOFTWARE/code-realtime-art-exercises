@@ -1,0 +1,20 @@
+capsule Top {  
+    fixed part part1 : Greeting; // Keyword "fixed" is optional
+    part part2 : Greeting;
+    part part3 : Greeting;
+    statemachine {
+        state State;
+        initial -> State;
+    };
+};
+
+capsule Greeting {    
+    statemachine {
+        state State;
+        initial -> State
+        `
+
+            Log::out << "Hello from " << getName() << std::endl;
+        `;
+    };
+};

@@ -1,0 +1,48 @@
+[
+  {
+    "context": "::Top",
+    "diagramType": "state",
+    "layouts": [
+      {
+        "element": "StateA",
+        "x": 80.0,
+        "y": 80.0
+      },
+      {
+        "element": "StateB",
+        "x": 80.0,
+        "y": 180.0
+      },
+      {
+        "element": "FinalState",
+        "x": 70.0,
+        "y": 270.0
+      },
+      {
+        "element": "InitialState",
+        "x": 70.0,
+        "y": -10.0
+      },
+      {
+        "element": "initial-state",
+        "x": 100.0,
+        "y": -80.0
+      },
+      {
+        "element": "t1",
+        "label_x": 20.0,
+        "label_y": 10.0
+      },
+      {
+        "element": "t2",
+        "label_x": 20.0,
+        "label_y": 10.0
+      },
+      {
+        "element": "t3",
+        "label_x": 20.0,
+        "label_y": 0.0
+      }
+    ]
+  }
+]

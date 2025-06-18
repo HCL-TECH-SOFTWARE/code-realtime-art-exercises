@@ -1,0 +1,28 @@
+capsule ResourcePool {   
+
+    statemachine {
+        state State;
+        initial -> State;
+    };
+};
+
+capsule Operator {
+    [[rt::header_preface]]
+    `
+        #include <string>
+    `
+
+    [[rt::decl]]
+    `
+    private:
+        std::string name;    
+    `        
+
+    statemachine {
+        state State;
+        initial -> State
+        `
+            Log::out << "I'm " << name << std::endl;
+        `;
+    };
+};

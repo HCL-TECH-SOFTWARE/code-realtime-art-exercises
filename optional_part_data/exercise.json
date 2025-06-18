@@ -1,0 +1,8 @@
+{    
+    "order": 600,    
+    "expectedOutput": [
+        "Hello from part1",
+        "Hello from part2",
+        "Hello from part3"
+    ]
+}

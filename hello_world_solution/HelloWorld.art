@@ -1,0 +1,12 @@
+capsule Top {    
+    statemachine {
+        state State {
+            entry
+            `
+                Log::out << "Hello World!" << std::endl;
+                context()->abort();
+            `;
+        };
+        initial -> State;
+    };
+};

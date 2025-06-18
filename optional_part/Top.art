@@ -1,0 +1,16 @@
+capsule Top {          
+    statemachine {
+        state State;
+        initial -> State;
+    };
+};
+
+capsule Greeting {    
+    statemachine {
+        state State;
+        initial -> State
+        `
+            Log::out << "Hello from " << getName() << std::endl;
+        `;
+    };
+};

@@ -1,0 +1,20 @@
+capsule Top {    
+    behavior port timer : Timing;
+    statemachine {
+        state S1;
+        state S2 {
+            entry
+            `
+                Log::out << "Hello World!" << std::endl;
+            `;
+        };    
+        initial -> S1
+        `
+            RTTimerId tid = timer.informIn(RTTimespec(1, 0));
+            if (!tid.isValid()) {
+                Log::err << "Failed to set timer" << std::endl;
+            }
+        `;
+        timeout : S1 -> S2 on timer.timeout;
+    };
+};

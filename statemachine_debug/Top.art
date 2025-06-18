@@ -1,0 +1,11 @@
+capsule Top {      
+    service behavior port comPort : Events;
+
+    statemachine {
+        state State;
+        initial -> State
+        `
+            Log::out << "Initial transition" << std::endl;
+        `;        
+    };
+};

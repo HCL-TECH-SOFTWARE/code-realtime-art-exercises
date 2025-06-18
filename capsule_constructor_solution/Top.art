@@ -1,0 +1,53 @@
+capsule ResourcePool {  
+    [[rt::impl_preface]]
+    `
+        #include <string>
+    `
+
+    behavior port frame : Frame; // Provides the APIs we need for dynamically incarnating optional parts
+
+    part employees : Operator[2] [[rt::create]]
+    `
+        std::string name = (index == 0) ? "Bob" : "Alice";
+        return new Operator(rtg_rts, rtg_ref, name);
+    `; 
+    optional part contractor : Operator[0..1];
+    
+    statemachine {
+        state State;
+        initial -> State
+        `
+            frame.incarnateCustom(contractor, RTActorFactory([this](RTController * c, RTActorRef * a, int index) {
+                return new Operator(c, a, "Steve"); 
+            }));
+        `;
+    };
+};
+
+capsule Operator {
+    [[rt::header_preface]]
+    `
+        #include <string>
+    `
+
+    [[rt::decl]]
+    `
+    private:
+        std::string name = "unknown";
+
+    public:
+        Operator(RTController* rtg_rts, RTActorRef* rtg_ref, const std::string& operatorName);
+    `
+    [[rt::impl]]
+    `
+        Operator::Operator(RTController* rtg_rts, RTActorRef* rtg_ref, const std::string& operatorName) 
+        : RTActor(rtg_rts, rtg_ref), name(operatorName) {}
+    `
+    statemachine {
+        state State;
+        initial -> State
+        `
+            Log::out << "I'm " << name << std::endl;
+        `;
+    };
+};

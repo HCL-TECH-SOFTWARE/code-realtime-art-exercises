@@ -1,0 +1,5 @@
+protocol Events {
+    /* In Events */
+    in e1();
+    in e2(`int`);    
+};

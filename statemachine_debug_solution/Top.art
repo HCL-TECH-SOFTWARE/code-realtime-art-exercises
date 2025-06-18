@@ -1,0 +1,24 @@
+capsule Top {      
+    service behavior port comPort : Events;
+
+    statemachine {
+        state InitialState;
+        state StateA;
+        initial -> InitialState
+        `
+            Log::out << "Initial transition" << std::endl;
+        `;
+        state StateB;
+        e1: InitialState -> StateA on comPort.e1
+        `
+            Log::out << "Transition e1 without data" << std::endl;
+        `;
+        e2:[[rt::properties(
+            const_rtdata=false
+        )]]
+         InitialState -> StateB on comPort.e2 
+        `
+            Log::out << "Transition e2 with data " << *rtdata << std::endl;
+        `;
+    };
+};

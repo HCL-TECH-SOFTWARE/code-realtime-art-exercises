@@ -1,0 +1,11 @@
+{    
+    "order": 700,    
+    "expectedOutput": [
+        "Hello from part fPart at index 1",
+        "Hello from part fPart at index 2",
+        "Hello from part fPart at index 3",
+        "Hello from part oPart at index 1",
+        "Hello from part oPart at index 2",
+        "Hello from part oPart at index 3"
+    ]
+}

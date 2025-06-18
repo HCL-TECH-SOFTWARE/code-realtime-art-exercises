@@ -1,0 +1,6 @@
+protocol Events {
+    /* In Events */
+    in ping();
+    /* Out Events */
+    out pong();
+};

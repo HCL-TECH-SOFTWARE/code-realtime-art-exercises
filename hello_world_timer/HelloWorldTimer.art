@@ -1,0 +1,13 @@
+capsule Top {    
+    
+    statemachine {
+        state S1;
+        state S2 {
+            entry
+            `
+                Log::out << "Hello!" << std::endl;
+            `;
+        };
+        initial -> S1;        
+    };
+};

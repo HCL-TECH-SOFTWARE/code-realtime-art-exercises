@@ -1,0 +1,4 @@
+protocol Events {
+    /* In Events */    
+    in theEvent(`float`);   
+};

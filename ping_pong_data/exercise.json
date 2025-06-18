@@ -1,0 +1,12 @@
+{    
+    "order": 900,
+    "expectedOutput": [
+        "Ping received",
+        "Pong received",
+        "Ping received",
+        "Pong received",
+        "Ping received",
+        "Pong received"
+    ],
+    "allowAdditionalOutput": false
+}

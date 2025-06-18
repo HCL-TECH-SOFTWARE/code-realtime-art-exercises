@@ -1,0 +1,6 @@
+capsule Top {    
+    statemachine {
+        state State;
+        initial -> State;
+    };
+};

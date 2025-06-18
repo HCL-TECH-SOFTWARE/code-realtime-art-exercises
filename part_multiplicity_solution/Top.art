@@ -1,0 +1,26 @@
+capsule Top {  
+    behavior port frame : Frame; // Provides the APIs we need for dynamically incarnating optional parts
+
+    part fPart : Greeting[3]; 
+    optional part oPart : Greeting[0..3];
+    
+    statemachine {
+        state State;
+        initial -> State
+        `
+            frame.incarnate(oPart);
+            frame.incarnate(oPart);
+            frame.incarnate(oPart);
+        `;
+    };
+};
+
+capsule Greeting {    
+    statemachine {
+        state State;
+        initial -> State
+        `
+            Log::out << "Hello from part " << getName() << " at index " << index() << std::endl;
+        `;
+    };
+};

@@ -1,0 +1,12 @@
+capsule Ponger {
+    service behavior port thePort : Events;
+    statemachine {
+        state PongerState;
+        PongerState -> PongerState on thePort.ping
+        `
+            Log::out << "Ping received" << std::endl;
+            thePort.pong().send(); // Send event "pong" on port "thePort"
+        `;
+        initial -> PongerState;
+    };
+};

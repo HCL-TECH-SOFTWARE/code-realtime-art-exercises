@@ -1,0 +1,9 @@
+protocol Events {
+    /* In Events */    
+    in in1();  
+    in newIn();  
+
+    /* Out Events */
+    out out1();
+    out newOut();
+};

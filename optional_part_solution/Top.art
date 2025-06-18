@@ -1,0 +1,26 @@
+capsule Top {      
+    behavior port frame : Frame; // Provides the APIs we need for dynamically incarnating optional parts
+
+    optional part part1 : Greeting;
+    part part2 : Greeting[0..1]; // Instead of using the "optional" keyword you can use the [0..1] multiplicity to indicate that the part is optional.
+    optional part part3 : Greeting[0..1]; // ...and to be super clear you can do both
+    statemachine {
+        state State;
+        initial -> State
+        `
+            frame.incarnate(part1);
+            frame.incarnate(part2);
+            frame.incarnate(part3);
+        `;
+    };
+};
+
+capsule Greeting {    
+    statemachine {
+        state State;
+        initial -> State
+        `
+            Log::out << "Hello from " << getName() << std::endl;
+        `;
+    };
+};

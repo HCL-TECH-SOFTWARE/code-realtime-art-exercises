@@ -1,0 +1,7 @@
+{    
+    "order": 400,    
+    "expectedOutput": [
+        "Initial transition"
+    ],
+    "interactive": true
+}

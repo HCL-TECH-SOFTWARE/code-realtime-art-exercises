@@ -1,0 +1,12 @@
+capsule Top {    
+    // The 'fixed' keyword can be omitted since it is the default for parts
+    fixed part pinger : Pinger; 
+    fixed part ponger : Ponger; 
+    
+    connect pinger.thePort with ponger.thePort; 
+
+    statemachine {
+        state S1;        
+        initial -> S1;        
+    };
+};
