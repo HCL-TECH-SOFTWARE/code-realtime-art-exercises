@@ -1,0 +1,5 @@
+protocol Events {
+    in init();
+    out data(`int`);
+    out reset();
+};

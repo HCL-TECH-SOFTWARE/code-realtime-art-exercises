@@ -1,0 +1,15 @@
+{    
+    "order": 1100,    
+    "expectedOutput": [
+        "Data is positive",
+        "Two positive numbers received",
+        "--- Reset ---",
+        "Data is positive",
+        "Positive then negative number received",
+        "--- Reset ---",
+        "Data is positive",
+        "--- Reset ---",
+        "Data is not positive",
+        "--- Reset ---"
+    ]
+}

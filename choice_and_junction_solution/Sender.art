@@ -1,0 +1,26 @@
+capsule Sender {
+    service behavior port com : Events;
+    service behavior port initPort : Events;
+    statemachine {
+        state Ready, Done;
+        initial -> Ready;
+
+        Ready -> Done on initPort.init
+        `
+            com.data(42).send();
+            com.data(44).send();
+            com.reset().send();
+
+            com.data(42).send();
+            com.data(-44).send();
+            com.reset().send();
+
+            com.data(42).send();
+            com.data(0).send();
+            com.reset().send();
+
+            com.data(-42).send();
+            com.reset().send();
+        `;
+    };
+};

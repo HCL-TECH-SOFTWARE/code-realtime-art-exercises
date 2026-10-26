@@ -1,0 +1,15 @@
+capsule Top {  
+    part sender : Sender; 
+    part receiver : Receiver;
+    behavior port initPort~ : Events;
+    connect sender.com with receiver.com;
+    connect initPort with sender.initPort;
+
+    statemachine {
+        state State;
+        initial -> State
+        `
+            initPort.init().send();
+        `;
+    };
+};

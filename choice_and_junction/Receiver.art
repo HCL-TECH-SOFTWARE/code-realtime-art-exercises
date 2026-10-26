@@ -1,0 +1,32 @@
+capsule Receiver {
+    service behavior port com~ : Events;
+    
+    statemachine {
+        initial -> TestNumbers.e;
+        state TestNumbers {
+            entrypoint e;
+            state WaitForData, Positive, NotPositive;
+            
+            e -> WaitForData;            
+
+            state DoublePositive {
+                entry
+                `
+                    Log::out << "Two positive numbers received" << Log::endl;
+                `;
+            };
+            state PositiveThenNegative {
+                entry
+                `
+                    Log::out << "Positive then negative number received" << Log::endl;
+                `;
+            };                    
+            
+            ignored: on com.data;
+        };
+        reset: TestNumbers -> TestNumbers.e on com.reset
+        `
+            Log::out << "--- Reset ---" << Log::endl;
+        `;
+    };
+};
