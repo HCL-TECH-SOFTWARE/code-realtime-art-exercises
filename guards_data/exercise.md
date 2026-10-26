@@ -6,19 +6,15 @@ An [internal transition](https://secure-dev-ops.github.io/code-realtime/art-lang
 
 The <a class="open-file-link" href="Top.art">Top</a> capsule of this exercise has a state machine with transitions that can take it from `InitialState` to `FinalState` when it has received <a class="open-file-link" href="Events.art">theEvent</a> 3 times. Your task is to extend the application so it only proceeds to the next state if the `float` data of `theEvent` is higher than the previously received value. If the event data value is equal or lower than before, the state machine should stay in its current state.
 
-1. Open the state diagram of the <a class="open-file-link" href="Top.art">Top</a> capsule. Note that the transitions `t1`, `t2` and `t3` are marked with warnings (the warnings can also be seen in the Art text editor on the transition names).
+1. Open the file <a class="open-file-link" href="Top.art">Top.art</a>. Note that the [internal transitions](https://secure-dev-ops.github.io/code-realtime/art-lang/#internal-transition) `tooLow` are marked with warnings (yellow underlines). If you don't see these warnings make sure you have set the TC as active. This particular warning is emitted during code generation, which only happens when the TC is active.
 
-![](transition_warnings.png)
+2. Rest your cursor on one of the warnings and make sure you understand what it means. In each of the states `InitialState`, `StateA` and `StateB` there are two triggered transitions (one of which is the [internal transition](https://secure-dev-ops.github.io/code-realtime/art-lang/#internal-transition) `tooLow`). Both these transitions trigger on the same event `theEvent` which makes it ambiguous which one to run when `theEvent` is received.
 
-If you don't see these warnings make sure you have set the TC as active. This particular warning is emitted during code generation, which only happens once the TC is active.
-
-2. Rest your cursor on the warning (either in the diagram or in the Art text editor) and make sure you understand what it means. In each of the states `InitialState`, `StateA` and `StateB` there are two triggered transitions (one of which is an [internal transition](https://secure-dev-ops.github.io/code-realtime/art-lang/#internal-transition) called `tooLow`). Both these transitions trigger on the same event `theEvent` which makes it ambiguous which one to run when `theEvent` is received.
-
-3. Build the application and debug it with the Art debugger. Send `theEvent` on the `comPort` and note that the state machine stays in the `InitialState`. From this we can conclude that the internal transition was run and not `t1`.
+3. Build the application and debug it with the Art debugger. Send `theEvent` on the `comPort` (with any data value) and note that the state machine moves from the `InitialState` to `StateA`. From this we can conclude that the external transitions was run and not `tooLow`.
 
 _Note:_ In a real application it's not recommended to have ambiguities in which transition to run when an event is received. That is the reason why a warning is emitted by the code generator when it encounters this situation.
 
-4. Locate the target folder `guards_target` in the Explorer view and open the file `Top.cpp` that contains the C++ code that was generated for the `Top` capsule state machine. Scroll down to the function `rtsBehavior()`. This is a virtual function in [RTActor](https://secure-dev-ops.github.io/code-realtime/targetrts-api/class_r_t_actor.html) which is overridden in `Top.cpp` to provide the implementation of the capsule state machine. Note that there is a warning about unreachable code printed before the call to the `t1` transition function. This corresponds to the warning you see in the Art file and in the state diagram. 
+4. Locate the target folder `guards_target` in the Explorer view and open the file `Top.cpp` that contains the C++ code that was generated for the `Top` capsule state machine. Scroll down to the function `rtsBehavior()`. This is a virtual function in [RTActor](https://secure-dev-ops.github.io/code-realtime/targetrts-api/class_r_t_actor.html) which is overridden in `Top.cpp` to provide the implementation of the capsule state machine. Note that there is a warning about unreachable code printed before the call to the `tooLow` transition function. This corresponds to the warning you see in the Art file and in the state diagram. 
 
 ```cpp
 case 2 /* InitialState */:
@@ -37,10 +33,10 @@ case 2 /* InitialState */:
         switch( signalIndex )
         {
         case Events::Base::rti_theEvent:
-            chain1_tooLow(  );
+            chain2_t1(  );
             return ;
             // WARNING: unreachable code;
-            chain5_t1(  );
+            chain5_tooLow(  );
             return ;
         default:
             break;

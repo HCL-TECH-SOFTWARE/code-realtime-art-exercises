@@ -11,4 +11,5 @@ An Art application has a [top capsule](https://secure-dev-ops.github.io/code-rea
 _Note:_ It's highly recommended to always have a TC set as active when working in Code RealTime since there are several features and work flows that require the presence of generated C++ code. As long as the TC stays active, the generated C++ code will continously and automatically update to reflect any changes you make in Art or TC files.
 
 3. From the TC file, open the top capsule by `ctrl+click` on the top capsule name `Top`.
+
 4. Edit the top capsule so it prints "Hello World!" to `stdout` and then terminates.

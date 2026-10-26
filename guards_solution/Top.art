@@ -10,19 +10,19 @@ capsule Top {
 
     statemachine {        
         state InitialState {
-            tooLow: on comPort.theEvent when `*rtdata < lastData`
+            tooLow: on comPort.theEvent when `*rtdata <= lastData`
             `
                 logTooLow();
             `;
         };
         state StateA {
-            tooLow: on comPort.theEvent when `*rtdata < lastData`
+            tooLow: on comPort.theEvent when `*rtdata <= lastData`
             `
                 logTooLow();
             `;
         };
         state StateB {
-            tooLow: on comPort.theEvent when `*rtdata < lastData`
+            tooLow: on comPort.theEvent when `*rtdata <= lastData`
             `
                 logTooLow();
             `;

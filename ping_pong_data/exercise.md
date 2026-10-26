@@ -5,7 +5,9 @@ A capsule can be decomposed into [parts](https://secure-dev-ops.github.io/code-r
 In this exercise the <a class="open-file-link" href="Pinger.art">Pinger</a> and <a class="open-file-link" href="Ponger.art">Ponger</a> capsules are already implemented. They both have a service [port](https://secure-dev-ops.github.io/code-realtime/art-lang/#port) `thePort` on which they can send and receive the events defined in the [protocol](https://secure-dev-ops.github.io/code-realtime/art-lang/#protocol-and-event) called <a class="open-file-link" href="Events.art">Events</a>. Note that `Pinger::thePort` is conjugated (i.e. marked with a ~ after its name) while `Ponger::thePort` is not. Two service ports typed by the same protocol can be connected to let their capsules communicate.
 
 1. Open the top capsule <a class="open-file-link" href="PingPong.art">Top</a>. Note that it already defines the part `pinger` and `ponger`. Also note that a warning is reported for these parts. Read and try to understand what it means.
+
 2. Create a [connector](https://secure-dev-ops.github.io/code-realtime/art-lang/#connector) which connects `pinger.thePort` with `ponger.thePort`. Note that the warnings were resolved by the addition of the connector.
+
 3. Open the structure diagram for <a class="open-file-link" href="PingPong.art">Top</a>. You do this by right-clicking inside it and performing the command **Open Structure Diagram**. 
 
 ![](ping_pong_structure.png)
@@ -21,5 +23,7 @@ The fact that `thePort` is a behavior port is not something that other capsules,
 ![](expand_collapse_all.png)
 
 6. Open the state diagram for <a class="open-file-link" href="Pinger.art">Pinger</a> and <a class="open-file-link" href="Ponger.art">Ponger</a>. You can do this by selecting a part in the structure diagram, press `ctrl+space` and then invoke the command **Open State Diagram**. Or you can invoke this command from their respective Art file context menus.
+
 7. Build and run the application. You should see that `Pinger` starts to send `ping` to `Ponger` which replies with a `pong`. This repeats forever (and very fast). Press `Ctrl+C` in the terminal to kill the application.
+
 8. Add a member variable in the <a class="open-file-link" href="Pinger.art">Pinger</a> capsule and store there the number of `ping` events that has been sent. Use that variable so `ping` only is sent 3 times.
