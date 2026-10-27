@@ -1,0 +1,7 @@
+{    
+    "order": 1200,    
+    "expectedOutput": [
+        "Got reply: 28",
+        "Got reply: 30"
+    ]
+}

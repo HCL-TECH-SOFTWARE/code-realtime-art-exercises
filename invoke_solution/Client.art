@@ -1,0 +1,18 @@
+capsule Client {    
+    service behavior notify port serverP : Events;    
+    statemachine {
+        state Done;
+        state WaitForBound;
+        initial -> WaitForBound;        
+
+        WaitForBound -> Done on serverP.rtBound
+        `                        
+            RTMessage reply1, reply2;
+            serverP.getDouble(14).invoke(&reply1);
+            serverP.getDouble(15).invoke(&reply2);
+            Log::out << "Got reply 1: " << *static_cast<int*>(reply1.data) << Log::endl;
+            Log::out << "Got reply 2: " << *static_cast<int*>(reply2.data) << Log::endl;
+            context()->abort();
+        `; 
+    };
+};

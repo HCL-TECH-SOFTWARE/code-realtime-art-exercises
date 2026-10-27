@@ -1,0 +1,13 @@
+capsule Server {
+    service behavior port clientP~ : Events;
+    
+    statemachine {
+        state Ready {
+            getDouble: on clientP.getDouble
+            `
+                clientP.getDouble_reply(*rtdata * 2).reply();
+            `;
+        };
+        initial -> Ready;
+    };
+};

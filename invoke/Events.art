@@ -1,0 +1,4 @@
+protocol Events {
+    out getDouble(`int`);
+    in getDouble_reply(`int`);
+};

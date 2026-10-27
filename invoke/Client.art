@@ -1,0 +1,16 @@
+capsule Client {
+    service behavior port serverP : Events;    
+    statemachine {
+        state WaitForReply, Done;
+        initial -> WaitForReply
+        `
+            serverP.getDouble(14).send();
+        `;
+
+        WaitForReply -> Done on serverP.getDouble_reply
+        `
+            Log::out << "Got reply: " << *rtdata << Log::endl;
+            context()->abort();
+        `;
+    };
+};
