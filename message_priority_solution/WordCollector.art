@@ -1,0 +1,25 @@
+capsule WordCollector {    
+    [[rt::impl_preface]]
+    `
+        #include <string>
+
+        std::string word;
+    `
+    service behavior port p : Events;    
+    statemachine {        
+        state BuildWord {
+            charReceived: on p.character
+            `
+                word += *rtdata;                
+            `;
+        };
+        initial -> BuildWord;    
+        state Done {
+            entry
+            `
+                Log::out << "Word: " << word << Log::endl;
+            `;
+        };
+        BuildWord -> Done on p.done;
+    };
+};

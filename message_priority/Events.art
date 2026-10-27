@@ -1,0 +1,4 @@
+protocol Events {    
+    in character(`char`);
+    in done();
+};

@@ -1,0 +1,19 @@
+capsule Top {      
+    part wordCollector : WordCollector;
+    behavior port wcp~ : Events;
+    
+    connect wcp with wordCollector.p;
+
+    statemachine {
+        state State;
+        initial -> State
+        `
+            wcp.character('C').send(Panic);
+            wcp.character('R').send(Background);
+            wcp.character('E').send(Low);
+            wcp.character('D').send(General);
+            wcp.character('O').send(High);
+            wcp.done().send(Background);
+        `;
+    };
+};

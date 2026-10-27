@@ -1,0 +1,1 @@
+Note that when you start to send events with the lower-than-default priorities `Low` and `Background`, you also need to adjust the priority of the `done` event. Otherwise it will arrive *before* those events. This illustrates why it's best to stick to the default message priorities as much as possible, and only use other priorities when really needed.
