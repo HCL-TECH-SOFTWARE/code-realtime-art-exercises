@@ -1,7 +1,7 @@
 {    
     "order": 1200,    
     "expectedOutput": [
-        "Got reply: 28",
-        "Got reply: 30"
+        "Got reply 1: 28",
+        "Got reply 2: 30"
     ]
 }
