@@ -1,0 +1,19 @@
+capsule Top {  
+    [[rt::impl_preface]]
+    `
+        #include "SpanishGreeting.h"
+    `
+    optional part greeting : Greeting; 
+    behavior port frame : Frame;
+
+    statemachine {
+        state State;
+        initial -> State
+        `
+            RTActorId aid = frame.incarnate(greeting, RTType_SpanishGreeting);
+            if (!aid.isValid()) {
+                Log::out << "Failed to incarnate SpanishGreeting" << Log::endl; 
+            }
+        `;
+    };
+};

@@ -1,0 +1,11 @@
+capsule SpanishGreeting : Greeting {
+
+    statemachine {
+        state redefine Done {
+            entry
+            `
+                Log::out << "Hola Mundo!" << Log::endl; 
+            `;
+        };
+    };
+};

@@ -1,0 +1,8 @@
+capsule Top {  
+    part greeting : Greeting; 
+
+    statemachine {
+        state State;
+        initial -> State;
+    };
+};

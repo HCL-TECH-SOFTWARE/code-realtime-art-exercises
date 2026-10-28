@@ -4,4 +4,4 @@ The multiplicity for a port is specified in square brackets after the protocol n
 port thePort : TheProtocol[10];
 ```
 
-To add a member variable to a capsule, use the context menu command **New Code Snippets (Declarations)**.
+To add a member variable to a capsule, use the command **New Code Snippets (Declarations)** from the `ctrl+space` menu.

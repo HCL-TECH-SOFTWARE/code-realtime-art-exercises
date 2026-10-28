@@ -1,0 +1,11 @@
+capsule Greeting {
+    statemachine {
+        state Done {
+            entry
+            `
+                Log::out << "Hello World" << Log::endl; 
+            `;
+        };
+        initial -> Done;
+    };
+};
