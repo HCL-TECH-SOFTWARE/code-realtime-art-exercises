@@ -1,0 +1,11 @@
+capsule Top {  
+    part client : Client; 
+    part server : Server;
+    
+    connect client.serverP with server.clientP;
+
+    statemachine {
+        state State;
+        initial -> State;
+    };
+};

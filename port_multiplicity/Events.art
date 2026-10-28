@@ -1,0 +1,4 @@
+protocol Events {
+    out getSessionId();
+    in getSessionId_reply(`int`);
+};

@@ -1,0 +1,21 @@
+capsule Server {
+    // allow multiple clients to connect
+    service behavior port clientP~ : Events[10];
+
+[[rt::decl]]
+`
+    protected:
+    int nextClientNumber = 1;
+`       
+    statemachine {
+        state Ready {
+            getSessionId: on clientP.getSessionId
+            `
+                // We can either use the rtport parameter which is the port on which 
+                // the message was received, or directly use the clientP port.
+                rtport->getSessionId_reply(nextClientNumber++).sendAt(msg->sapIndex0());
+            `;
+        };
+        initial -> Ready;
+    };
+};

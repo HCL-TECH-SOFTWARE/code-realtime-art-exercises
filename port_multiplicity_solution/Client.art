@@ -1,0 +1,19 @@
+capsule Client {
+    service behavior notify port serverP : Events;    
+
+    statemachine {
+        state WaitForBound, WaitForSessionId, Initialized;
+        initial -> WaitForBound;
+
+        bound: WaitForBound -> WaitForSessionId on serverP.rtBound
+        `
+            Log::out << "Connected to server" << Log::endl;  
+            serverP.getSessionId().send();
+        `;
+        
+        initialized: WaitForSessionId -> Initialized on serverP.getSessionId_reply
+        `
+            Log::out << "Received session ID: " << *rtdata << Log::endl;
+        `;
+    };
+};
